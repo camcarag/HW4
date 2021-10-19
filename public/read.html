@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+Contacts in DB
+<button onclick="readContacts()">Read Contacts</button>
+<div id="output">Loading...</div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/superagent"></script>
+<script>
+function readContacts(){
+   var url = '/read';
+
+   superagent
+       .get(url)
+       .end(function(err, res){
+           if (err) {
+               console.log('err:',err);
+           } else {
+               console.log('response:',res.text);
+               var output = document.getElementById("output");
+               console.log(output);
+               output.innerHTML=res.text;
+           }
+       });
+}
+
+</script>
+
+</html>
